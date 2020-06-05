@@ -422,6 +422,14 @@ protected:
      */
     QJsonValue takeValueFromJson(const QString& key);
 
+    /*! \brief Return the whole response JSON, and clear it in the job object
+     *
+     * This is a facility method to provide a kind of "move" semantics to
+     * the received payload: it returns the JSON response replacing it in
+     * the internal job state with an empty object.
+     */
+    QJsonObject takeJsonData();
+
     void setStatus(Status s);
     void setStatus(int code, QString message);
 

@@ -568,6 +568,13 @@ QJsonValue BaseJob::takeValueFromJson(const QString& key)
     return v;
 }
 
+QJsonObject BaseJob::takeJsonData()
+{
+    return d->jsonResponse.isObject()
+               ? std::exchange(d->jsonResponse, {}).object()
+               : QJsonObject {};
+}
+
 void BaseJob::stop()
 {
     // This method is (also) used to semi-finalise the job before retrying; so
